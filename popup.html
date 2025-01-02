@@ -1,0 +1,112 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Blocker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 350px; 
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    h3,
+    h4 {
+      margin: 10px 0;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 5px 10px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    .scrollable-container {
+      max-height: 200px; 
+      max-width: 100%;
+      overflow: auto; 
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px;
+      box-sizing: border-box;
+      margin-top: 10px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      min-width: 300px; /* Ensures horizontal scrollbar appears if needed */
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+      min-width: 280px; /* Ensures content doesn't overflow without scrolling */
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    .remove-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      padding: 3px 7px;
+      font-size: 0.9em;
+    }
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 400px) {
+      body {
+        width: 100%;
+        padding: 10px;
+      }
+      input[type="text"] {
+        width: 65%;
+      }
+      ul {
+        min-width: 250px;
+      }
+      li {
+        min-width: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>Image Blocker</h3>
+  <div>
+    <input type="text" id="urlInput" placeholder="Enter image URL or data">
+    <button id="addBtn" style="background-color: #2ecc71; color: white; border: none; border-radius: 3px; padding: 5px 10px; cursor: pointer;">Add</button>
+  </div>
+  
+  <h4>Blocked URLs:</h4>
+  <div class="scrollable-container">
+    <ul id="urlList"></ul>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <button id="exportBtn" style="background-color: #498aaa; color: white; border: none; border-radius: 3px; padding: 5px 10px; cursor: pointer;">
+      Export
+    </button>
+    <button id="importBtn" style="background-color: #498aaa; color: white; border: none; border-radius: 3px; padding: 5px 10px; cursor: pointer;">
+      Import
+    </button>
+    <input type="file" id="importFile" accept=".json" style="display: none;">
+    <button id="clearAllBtn" style="margin-left: 40px; background-color: #e62222; color: white; border: none; border-radius: 3px; padding: 5px 10px; cursor: pointer;">
+      Clear All
+    </button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
