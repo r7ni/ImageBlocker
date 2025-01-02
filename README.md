@@ -1,4 +1,4 @@
-# Portraits of the Blessed Beauty Hider
+# Image Blocker Extension
 
 ## Overview
 This Chrome extension blocks images of specified URLs. It operates on two levels:
