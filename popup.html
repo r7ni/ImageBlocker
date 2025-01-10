@@ -1,4 +1,4 @@
-<!-- popup.html -->
+<!-- popup.html / meow-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +26,10 @@
     }
 
     .scrollable-container {
-      max-height: 200px; 
-      max-width: 100%;
+      max-height: 300px; 
+      width: 95%;          
+      margin: 0 auto; 
+
       overflow: auto; 
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -35,11 +37,12 @@
       box-sizing: border-box;
       margin-top: 10px;
     }
+
     ul {
       list-style-type: none;
       padding: 0;
       margin: 0;
-      min-width: 300px; /* Ensures horizontal scrollbar appears if needed */
+      min-width: 300px;
     }
     li {
       display: flex;
@@ -47,7 +50,7 @@
       align-items: center;
       padding: 5px 0;
       border-bottom: 1px solid #eee;
-      min-width: 280px; /* Ensures content doesn't overflow without scrolling */
+      min-width: 280px; 
     }
     li:last-child {
       border-bottom: none;
@@ -64,7 +67,6 @@
     .remove-btn:hover {
       background-color: #c0392b;
     }
-    /* Responsive adjustments */
     @media (max-width: 400px) {
       body {
         width: 100%;
@@ -85,7 +87,7 @@
 <body>
   <h3>Image Blocker</h3>
   <div>
-    <input type="text" id="urlInput" placeholder="Enter image URL or data">
+    <input type="text" id="urlInput" placeholder="Enter Image URL or data">
     <button id="addBtn" style="background-color: #2ecc71; color: white; border: none; border-radius: 3px; padding: 5px 10px; cursor: pointer;">Add</button>
   </div>
   

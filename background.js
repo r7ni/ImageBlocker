@@ -29,8 +29,12 @@ async function initializeDynamicRules(urlsParam) {
       }
     }
 
+    // Deduplicate
+    urlList = [...new Set(urlList)];
+
+    // Map to rules
     const rules = urlList.map((url, index) => ({
-      id: index + 1, // increment ID by adding one
+      id: index + 1,
       priority: 1,
       action: { type: 'block' },
       condition: {
@@ -39,9 +43,14 @@ async function initializeDynamicRules(urlsParam) {
       }
     }));
 
+    // 1) Get *all* existing rules
+    const existingRules = await chrome.declarativeNetRequest.getDynamicRules();
+    const existingRuleIds = existingRules.map(rule => rule.id);
+
+    // 2) Remove *all* existing rules, then 3) add the new ones
     await chrome.declarativeNetRequest.updateDynamicRules({
-      removeRuleIds: rules.map(rule => rule.id), // clear dynamic rules
-      addRules: rules // add new rules
+      removeRuleIds: existingRuleIds,
+      addRules: rules
     });
 
     console.log(`Dynamic rules loaded: ${rules.length} image URLs blocked.`);

@@ -1,5 +1,5 @@
 //have a happy happy day
-
+//popup.js
 document.addEventListener('DOMContentLoaded', () => {
   const addBtn = document.getElementById('addBtn');
   const urlInput = document.getElementById('urlInput');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Function to load and display blocked URLs
+  // Loads and Displays the URLS
   function loadBlockedUrls() {
     chrome.storage.local.get(['blockedUrls'], (result) => {
       const urls = result.blockedUrls || [];
@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const urlSpan = document.createElement('span');
         urlSpan.textContent = url;
-        urlSpan.title = url; // Tooltip on hover
-        urlSpan.style.wordBreak = 'break-all'; // Allow long URLs to wrap
+        urlSpan.title = url; 
+        urlSpan.style.wordBreak = 'break-all'; 
 
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Function to add a new blocked URL to the list
+  // Function to add a new url
   function addBlockedUrl(url) {
     chrome.storage.local.get(['blockedUrls'], (result) => {
       const urls = result.blockedUrls || [];
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Function to clear all blocked URLs from the list
+  //Function to clear all the blockedURLS
   clearAllBtn.addEventListener('click', () => {
     if (confirm('Are you sure you want to remove all blocked URLs?')) {
       chrome.storage.local.set({ blockedUrls: [] }, () => {
@@ -100,18 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Function to export the list
+  // function to export the list in
   exportBtn.addEventListener('click', () => {
     chrome.storage.local.get(['blockedUrls'], (result) => {
       const urls = result.blockedUrls || [];
       const blob = new Blob([JSON.stringify(urls, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
-      
+
       const a = document.createElement('a');
       a.href = url;
       a.download = 'blockedUrls.json';
       a.click();
-      
+
       URL.revokeObjectURL(url);
     });
   });
@@ -154,9 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function isValidUrl(string) {
-    //Validating URLs
+    // Allow data URLs explicitly
+    if (string.startsWith('data:')) return true;
+
+    // Validating URLs
     const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-      '(([a-zA-Z0-9_-]+\\.)+[a-zA-Z]{2,6})' + // domain naem
+      '(([a-zA-Z0-9_-]+\\.)+[a-zA-Z]{2,6})' + // domain name
       '(\\/[^\\s]*)?$');
     return pattern.test(string);
   }

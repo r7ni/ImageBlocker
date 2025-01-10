@@ -18,9 +18,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
   }
 });
 
-/**
- * This function sets up everything after we've attempted to load blockedUrls.
- */
 function initRemovalLogic() {
   // Checks for any mutations/changes
   const observer = new MutationObserver(mutations => {
@@ -63,7 +60,7 @@ function processImage(img) {
  */
 function processNode(node) { // checking element and its children and bg imgs
   if (node.nodeType === Node.ELEMENT_NODE) { // make sure it is an HTML element
-    if (node.tagName === 'IMG') { // if node is an image, process it
+    if (node.tagName === 'IMG') { // if node is an image then process it
       processImage(node);
     } else {
       // Check for background images
