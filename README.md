@@ -29,9 +29,9 @@ This Chrome extension blocks images of specified URLs. It operates on two levels
 ## Usage
 ### Blocking Images
 1. Pin the extension and then click the icon to open up the popup.
-2. Enter the URL or data of the image you want to block and **Add**.
-3. The URL will be added to the block list. Refresh for effect.
-4. To remove an image from the block list click either Remove or Clear All.
+2. Enter the URL or data of the image you want to block and then click **Add**.
+3. The URL will be added to the block list. Refresh page to implement.
+4. To remove an image from the block list click either **Remove** or **Clear All**.
 
 ### Import/Export Block Lists
 - **Export**:
